@@ -1,0 +1,10 @@
+*~
+*.pdf
+*_gaussian.*
+*_si.*
+*.aux
+*.log
+*.toc
+*.ps
+*.latex
+*.dvi

@@ -1,0 +1,242 @@
+\documentclass[10pt,twocolumn]{article}
+
+\usepackage{ifthen}
+\newcommand{\sigaussian}[2]{#1} % SI
+
+\newcommand{\fourpiepsilono}{\sigaussian{4\pi\epsilon_0}{}}
+\newcommand{\muooverfourpi}{\sigaussian{\frac{\mu_0}{4\pi}}{}}
+
+\markright{\hfill Comp Exam Formula Sheet \sigaussian{(SI)}{(gaussian)}\hfill}
+\pagestyle{myheadings}
+
+\date{April 2, 2007}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+\newcommand{\nothing}{\textcolor{white}{.}}
+
+\newcommand{\D}{\mathbf{\nabla}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\J}{\mathbf{J}}
+\newcommand{\m}{\mathbf{m}}
+\newcommand{\rr}{\mathbf{r}}
+\newcommand{\dS}{\mathbf{dS}}
+\newcommand{\dl}{\mathbf{dl}}
+\newcommand{\laplacian}{\nabla^2}
+
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\rhat}{\mathbf{\hat{r}}}
+\newcommand{\thetahat}{\mathbf{\hat{\theta}}}
+\newcommand{\rhohat}{\mathbf{\hat{\rho}}}
+\newcommand{\phihat}{\mathbf{\hat{\phi}}}
+
+\newcommand{\red}[1]{\color{red}{#1}}
+
+\begin{document}
+
+  \section{Physical constants}
+  \begin{align*}
+    \text{fine structure constant}:  &&\alpha &= \frac{e^2}{\fourpiepsilono
+    \hbar c} \approx \frac{1}{137}\\
+    \text{Rydberg energy}:  &&E_o &= \frac{m_e e^4}{2\hbar^2 \,\sigaussian{(4\pi\epsilon_o)^2}{}}\\
+    && &= \frac{m_ec^2\alpha^2}2 \\
+    \text{Bohr magneton}:  &&\mu_B &= \frac{e\hbar}{2m_e\sigaussian{}{c}} \\
+    \text{Bohr radius}:  &&a_o &= \frac{\fourpiepsilono\hbar^2}{m_e e^2}
+  \end{align*}
+
+  \section{Vector calculus relationships}
+  Triple products:
+  \begin{align*}
+    \A\times(\B\times\C) &= \B(\A\cdot\C) - \C(\A\cdot\B) \\
+    \A\cdot(\B\times\C) &= \B\cdot(\C\times\A) = \C\cdot(\A\times\B)
+  \end{align*}
+  Product rules:
+  \begin{align*}
+    \D(\A\cdot\B) &= (\A\cdot\D)\B+(\B\cdot\D)\A \\
+    &+\A\times(\D\times\B)+\B\times(\D\times\A) \\
+    \D\cdot(\phi\A) &= \phi\D\cdot\A + \A\cdot\D\phi \\
+    \D\cdot(\A\times\B) &= \B\cdot(\D\times\A) + \A\cdot(\D\times\B) \\
+    \D\times(\A\times\B) &= \A\D\cdot\B - \B\D\cdot\A + \\
+    &+ (\B\cdot\D)\A - (\A\cdot\D)\B
+  \end{align*}
+  Second derivatives:
+  \begin{align*}
+    \D\times(\D\times\A) &= \D(\D\cdot\A) - \laplacian\A \\
+    \D\cdot(\D\times\A) &=0
+  \end{align*}
+  Green's theorem:
+  \begin{align*}
+    \int_V\left(\psi\laplacian\phi-\phi\laplacian\psi\right)&dV
+    = \oint_S\left(\psi\D\phi - \phi\D\psi\right)\cdot\dS
+  \end{align*}
+  Spherical coordinates:
+  \begin{align*}
+    \D f &= \frac{\partial f}{\partial r}\rhat
+    + \frac1r\frac{\partial f}{\partial\theta}\thetahat
+    + \frac1{r\sin\theta}\frac{\partial f}{\partial\phi}\phihat \\
+    \D\cdot\A &= \frac1{r^2}\frac{\partial}{\partial r}
+          \left(r^2A_r\right)
+    + \frac1{r\sin\theta}\frac{\partial}{\partial\theta}
+          \left(\sin\theta A_\theta\right) \\
+    &+ \frac1{r\sin\theta}\frac{\partial A_\phi}{\partial\theta} \\
+    \D\times\A &=
+    \frac1{r\sin\theta} \left(
+         \frac{\partial}{\partial\theta}\left(\sin\theta A_\phi\right)
+         - \frac{\partial A_\theta}{\partial\phi}
+    \right) \rhat \\
+    &+ \frac1r\left(
+         \frac1{\sin\theta}\frac{\partial A_r}{\partial \phi}
+         - \frac{\partial}{\partial r}\left(rA_\phi\right)
+    \right)\thetahat \\
+    &+ \frac1r\left(
+         \frac{\partial}{\partial r}\left(rA_\theta\right)
+         -\frac{\partial A_r}{\partial\theta}
+    \right)\phihat
+    \\
+    \laplacian f &=
+    \frac1{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial
+    f}{\partial r}\right)
+    + \frac1{r^2\sin\theta}\frac{\partial}{\partial\theta}
+      \left(\sin\theta\frac{\partial f}{\partial\theta}\right)\\
+    &\quad+ \frac1{r^2\sin^2\theta}\frac{\partial^2f}{\partial\phi^2}
+  \end{align*}
+  Cylindrical coordinates:
+  \begin{align*}
+    \D f &= \frac{\partial f}{\partial\rho}\rhohat
+    + \frac1\rho \frac{\partial f}{\partial\phi} \phihat
+    + \frac{\partial f}{\partial z}\zhat\\
+    \D\cdot\A &=
+    \frac1\rho \frac{\partial}{\partial\rho}\left(\rho A_\rho\right)
+    + \frac1\rho \frac{\partial A_\phi}{\partial\phi}
+    + \frac{\partial A_z}{\partial z} \\
+    \D\times\A &= \left(\frac1\rho\frac{\partial A_z}{\partial\phi}
+                  - \frac{\partial A_\phi}{\partial z}\right)\rhohat \\
+    &+ \left(\frac{\partial A_\rho}{\partial z} -
+             \frac{\partial A_z}{\partial\rho}\right)\phihat \\
+    &+ \frac1\rho\left(\frac{\partial}{\partial\rho}(\rho A_\phi) -
+                \frac{\partial A_\rho}{\partial\phi} \right)\zhat \\
+    \laplacian f &=
+    \frac1\rho\frac{\partial}{\partial\rho}
+    \left(\rho\frac{\partial f}{\partial\rho}\right)
+    + \frac1{\rho^2}\frac{\partial^2f}{\partial\phi^2}
+    + \frac{\partial^2f}{\partial z^2}
+  \end{align*}
+
+  \section{Quantum mechanics}
+  Raising and lowering operators\\
+  for angular momentum:
+  \begin{align*}
+    J_\pm \left|j,m\right> = \hbar\sqrt{j(j+1)-m(m\pm1)}
+      \left|j,m\pm1\right>
+  \end{align*}
+  Perturbation theory for
+  nondegenerate states:
+  \begin{align*}
+    E_n \approx E_n^o + \left<n\right|V\left|n\right>
+      + \sum_{m\ne n}
+      \frac{\left|\left<n\right|V\left|m\right>\right|^2}{E_n-E_m}
+      + \cdots
+  \end{align*}
+
+  Harmonic oscillator: $[a,a^{\dagger}]=1$
+  \begin{align*}
+    &a = \sqrt{\frac{m\omega}{2\hbar}}x+i\frac{p}{\sqrt{2m\omega\hbar}} \\
+    &a^{\dagger} =
+    \sqrt{\frac{m\omega}{2\hbar}}x-i\frac{p}{\sqrt{2m\omega\hbar}}\\
+    &a^{\dagger}|n\rangle=\sqrt{n+1}|n+1\rangle \\
+    &a|n\rangle=\sqrt{n}|n-1\rangle \\
+  \end{align*}
+
+  \section{Electromagnetism}
+  Maxwell's equations:
+  \begin{align*}
+    \D\cdot\mathbf{D} &= \sigaussian{}{4\pi}\rho &
+    \D\times\E &= -\sigaussian{}{\frac1c}\frac{\partial\B}{\partial t} \\
+    \D\cdot\B &= 0
+    & \D\times\mathbf{H} &=
+    \sigaussian{}{\frac1c}\frac{\partial \mathbf{D}}{\partial t}
+    + \sigaussian{}{\frac{4\pi}c}\mathbf{J}
+  \end{align*}
+  Magnetic dipole field:
+  \begin{align*}
+  \B(\rr) = \muooverfourpi\frac{3\rhat(\rhat\cdot\m)-\m}{r^3}
+  \end{align*}
+
+  \noindent Energy density:
+  $ U = \frac{1}{\sigaussian{2}{8\pi}}(\E\cdot\mathbf{D} +
+  \B\cdot\mathbf{H})$
+
+  \noindent Poynting vector:
+  $ \mathbf{S} = \sigaussian{}{\frac{c}{4\pi}} \E\times\mathbf{H}$
+
+  \subsection*{General solutions of Laplace's equation}
+  in cylindrical coordinates (independent of $z$):
+  \begin{align*}
+    \Phi(\rho,\phi) &= a_o\log(\rho) \\
+      & +\sum_{n=1}^\infty\left( \frac{a_n}{\rho^n} + b_n\rho^n
+      \right)\left( c_n\cos n\phi + d_n\sin n\phi \right)
+  \end{align*}
+  in spherical coordinates:
+  \begin{align*}
+    \Phi(r,\theta,\phi) &= \sum_{l=0}^\infty\sum_{m=-l}^l\left(
+      A_{lm}r^l + \frac{B_{lm}}{r^{l+1}} \right) Y_{lm}(\theta,\phi)
+  \end{align*}
+  \begin{align*}
+    \Phi(r,\theta) &= \sum_{l=0}^\infty\left(
+      A_lr^l + \frac{B_l}{r^{l+1}} \right) P_l(\cos\theta) \\
+      &\text{(with azimuthal symmetry)}
+  \end{align*}
+
+  \section{Useful math formulas}
+  \begin{align*}
+    e^{ikr\cos\theta} &= \sum_{l=0}^\infty (2l+1)i^lj_l(kr)P_l(\cos\theta)
+    \\
+    \int_{-\infty}^\infty e^{ixy} dy &= 2\pi\delta(x)\\
+    \int_0^\infty x^ne^{-x} dx &= n!\,,\, \text{integer }n
+  \end{align*}
+  \begin{align*}
+    (1+x)^n &= \sum_{k=1}^n \frac{n!}{k!(n-k)!}x^k \\
+    \log(n!) &\approx \frac12 \log(2\pi n) + n\log(n) - n \\
+    \sin(x\pm y) &= \sin x\cos y \pm \cos x\sin y \\
+    \cos(x \pm y) &= \cos x\cos y \mp \sin x\sin y
+  \end{align*}
+  \begin{align*}
+    \frac1{|\x - \x'|} &=
+    \sum_{lm} \frac{4\pi}{2l+1} \frac{r_<^l}{r_>^{l+1}}
+    Y_{lm}^*(\theta',\phi')
+    Y_{lm}(\theta,\phi)
+  \end{align*}
+  \begin{align*}
+    \frac1{|\x - r'\mathbf{\hat{z}}|} &=
+    \sum_{l} \frac{r_<^l}{r_>^{l+1}} P_l(\cos\theta)
+  \end{align*}
+  Spherical Bessel functions:
+  \begin{align*}
+    j_0(z) &= \frac{\sin z}{z} &     n_0(z) &= -\frac{\cos z}z \\
+    j_1(z) &= \frac{\sin z}{z^2} - \frac{\cos z}z &
+    n_1(z) &= -\frac{\cos z}{z^2} - \frac{\sin z}z
+  \end{align*}
+  Legendre polynomials:
+  \begin{align*}
+    P_0(x) &= 1 & P_2(x) &= \frac12\left(3x^2-1\right) \\
+    P_1(x) &= x & P_3(x) &= \frac12\left(5x^3-3x\right) \\
+    P_l^m(x) &= \left(1-x^2\right)^{m/2} \frac{d^mP_l}{dx^m}
+  \end{align*}
+  Spherical harmonics:
+  \begin{align*}
+    Y_{00} &= \frac1{\sqrt{4\pi}}
+    & Y_{22} &= \sqrt{\frac{15}{32\pi}}\sin^2\theta e^{i2\phi} \\
+    Y_{11} &= -\sqrt{\frac{3}{8\pi}}\sin\theta e^{i\phi}
+    & Y_{21} &= -\sqrt{\frac{15}{8\pi}}\sin\theta\cos\theta e^{i\phi} \\
+    Y_{10} &= \sqrt{\frac{3}{4\pi}}\cos\theta
+    & Y_{20} &= \sqrt{\frac{5}{4\pi}}\left( \frac32 \cos^2\theta - \frac12
+    \right)
+  \end{align*}
+
+\end{document}
