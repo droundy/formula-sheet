@@ -3,3 +3,6 @@
 set -ev
 
 make
+
+pdftk formula_gaussian.pdf dump_data output | grep 'NumberOfPages: 2'
+pdftk formula_si.pdf dump_data output | grep 'NumberOfPages: 2'
