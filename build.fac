@@ -1,0 +1,7 @@
+| pdflatex formula_sheet-2018.tex
+
+| pdflatex -jobname formula_si formula_sheet.tex
+
+| perl -pe 's/#1} % SI/#2} % gaussian/' < formula_sheet.tex > formula_gaussian.tex
+
+| pdflatex formula_gaussian.tex
